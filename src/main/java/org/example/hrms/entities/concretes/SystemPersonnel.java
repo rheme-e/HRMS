@@ -16,6 +16,7 @@ public class SystemPersonnel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @OneToOne
     @JoinColumn(name = "fk_user_id")
     private User user;

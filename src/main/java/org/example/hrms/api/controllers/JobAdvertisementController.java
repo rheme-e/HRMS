@@ -3,7 +3,6 @@ package org.example.hrms.api.controllers;
 import org.example.hrms.business.abstracts.JobAdvertisementDtoService;
 import org.example.hrms.business.abstracts.JobAdvertisementService;
 import org.example.hrms.core.utilities.result.DataResult;
-import org.example.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import org.example.hrms.dtos.JobAdvertisementDto;
 import org.example.hrms.entities.concretes.JobAdvertisement;
 import org.springframework.beans.factory.annotation.Autowired;

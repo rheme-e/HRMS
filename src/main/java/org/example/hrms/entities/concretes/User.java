@@ -38,7 +38,7 @@ public class User implements org.example.hrms.entities.abstracts.User {
     @JoinColumn ( name = "fk_user_id")
     private JobPosition jobPosition;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
     private List<VerificationCode> verificationCode;
 
 

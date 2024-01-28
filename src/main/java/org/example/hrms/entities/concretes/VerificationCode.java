@@ -18,11 +18,11 @@ public class VerificationCode {
     @JoinColumn(name = "id")
     private int id;
 
-    @JoinColumn(name = "code")
+    @JoinColumn(name = "code" , unique = true)
     private String code;
 
     @ManyToOne
-    @JoinColumn ( name = "fk_user_id")
+    @JoinColumn (name = "fk_user_id")
     private User user;
 
 

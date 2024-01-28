@@ -73,7 +73,11 @@
 			<artifactId>commons-text</artifactId>
 			<version>1.9</version> <!-- Güncel sürümü kontrol edin -->
 		</dependency>
-
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.27.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
