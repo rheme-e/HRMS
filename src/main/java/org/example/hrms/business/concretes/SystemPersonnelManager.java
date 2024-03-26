@@ -18,9 +18,4 @@ public class SystemPersonnelManager implements SystemPersonnelService {
 
     //ToDo Sistem personeli kayıt yapmıyor mu?
 
-
-    @Override
-    public void signUp(User entity, String type) throws Exception {
-
-    }
 }

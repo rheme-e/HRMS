@@ -16,10 +16,11 @@ public class Cv {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @OneToMany(mappedBy = "cv" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
     private List<SchoolExperience> schoolExperience;
+
 
     @OneToMany(mappedBy = "cv" , cascade = CascadeType.ALL)
     private List<JobExperience> jobExperiences;
@@ -42,5 +43,7 @@ public class Cv {
     @Column( name = "cover_letter")
     private String coverLetter ;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_jobseeker_id")
+    private JobSeeker jobSeeker;
 }

@@ -15,7 +15,7 @@ public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "company_name")
     private String companyName;
@@ -26,12 +26,9 @@ public class Employer {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
     private User user;
-
-    @OneToMany (mappedBy = "employer", cascade = CascadeType.ALL)
-    private List<JobAdvertisement> jobAdvertisement;
 
 }
 

@@ -21,15 +21,42 @@ public class JobAdvertisementDtoManager implements JobAdvertisementDtoService {
         List<JobAdvertisementDto> jobAdvertisementDtoList = new ArrayList<>();
         for(JobAdvertisement j : jobAdvertisements){
             JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
+            jobAdvertisementDto.setId(j.getId());
             jobAdvertisementDto.setCompanyName(j.getEmployer().getCompanyName());
             jobAdvertisementDto.setJobPositionName(j.getJobPosition().getPositionName());
             jobAdvertisementDto.setOpenPosition(j.getOpenPosition());
             jobAdvertisementDto.setReleaseDate(j.getReleaseDate());
             jobAdvertisementDto.setApplicationDeadline(j.getApplicationDeadline());
+            jobAdvertisementDto.setModel(j.getModel());
+            jobAdvertisementDto.setTime(j.getTime());
+            jobAdvertisementDto.setCity(j.getCity().getName());
+            jobAdvertisementDto.setActive(j.isActive());
             jobAdvertisementDtoList.add(jobAdvertisementDto);
+            jobAdvertisementDto.setJobDescription(j.getJobDescription());
         }
        return new SuccessDataResult<List<JobAdvertisementDto>>("İş ilanı DTO'ya eklendi.",jobAdvertisementDtoList);
     }
+
+    @Override
+    public DataResult<JobAdvertisementDto> get(JobAdvertisement jobAdvertisement) {
+        JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
+        jobAdvertisementDto.setId(jobAdvertisement.getId());
+        jobAdvertisementDto.setCompanyName(jobAdvertisement.getEmployer().getCompanyName());
+        jobAdvertisementDto.setJobPositionName(jobAdvertisement.getJobPosition().getPositionName());
+        jobAdvertisementDto.setOpenPosition(jobAdvertisement.getOpenPosition());
+        jobAdvertisementDto.setReleaseDate(jobAdvertisement.getReleaseDate());
+        jobAdvertisementDto.setApplicationDeadline(jobAdvertisement.getApplicationDeadline());
+        jobAdvertisementDto.setModel(jobAdvertisement.getModel());
+        jobAdvertisementDto.setTime(jobAdvertisement.getTime());
+        jobAdvertisementDto.setCity(jobAdvertisement.getCity().getName());
+        jobAdvertisementDto.setActive(jobAdvertisement.isActive());
+        jobAdvertisementDto.setJobDescription(jobAdvertisement.getJobDescription());
+
+        return new SuccessDataResult<>("ok",jobAdvertisementDto);
+    }
+
+
+
 
 
 }

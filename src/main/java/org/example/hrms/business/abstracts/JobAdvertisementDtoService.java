@@ -9,5 +9,7 @@ import java.util.List;
 public interface JobAdvertisementDtoService {
     DataResult<List<JobAdvertisementDto>> getAll(List<JobAdvertisement> jobAdvertisements);
 
+    DataResult<JobAdvertisementDto> get(JobAdvertisement jobAdvertisements);
+
 
 }

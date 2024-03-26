@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,12 +46,19 @@ public class JobAdvertisement {
     @Column(name = "release_date")
     private Date releaseDate;
 
-    @Column(name = "is_active" )
+    @Column(name = "is_active")
     private boolean isActive;
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "time")
+    private String time;
 
     @ManyToOne
     @JoinColumn(name = "employer_id")
     private Employer employer;
+
 
 
 }

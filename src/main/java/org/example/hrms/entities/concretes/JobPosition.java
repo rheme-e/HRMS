@@ -22,9 +22,5 @@ public class JobPosition implements org.example.hrms.entities.abstracts.JobPosit
     @Column(name = "position_name")
     private String positionName;
 
-    @OneToMany (mappedBy = "jobPosition", cascade = CascadeType.ALL)
-    private List<User> user;
 
-    @OneToMany ( mappedBy = "jobPosition" ,cascade = CascadeType.ALL)
-    private List<JobAdvertisement> jobAdvertisement;
 }

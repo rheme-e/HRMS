@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "job_experiences")
 @NoArgsConstructor
@@ -18,8 +19,9 @@ public class JobExperience {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "company_name")
-    private String companyName;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_company_id")
+    private List<CompanyName> companyNames;
 
     @Column(name = "position")
     private String position;

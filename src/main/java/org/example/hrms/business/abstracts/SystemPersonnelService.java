@@ -3,7 +3,6 @@ package org.example.hrms.business.abstracts;
 import org.example.hrms.entities.concretes.SystemPersonnel;
 import org.example.hrms.entities.concretes.User;
 
-public interface SystemPersonnelService extends UserService<User> {
-    @Override
-    void signUp(User entity, String type) throws Exception;
+public interface SystemPersonnelService  {
+
 }

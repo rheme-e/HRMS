@@ -7,17 +7,25 @@ import org.example.hrms.entities.concretes.User;
 
 public interface UserCheckService extends MernisAdapter {
     @Override
-    default boolean checkIfRealPerson(User user) throws Exception {
-        return MernisAdapter.super.checkIfRealPerson(user);
+    default boolean checkIfRealPerson(JobSeeker jobSeeker) throws Exception {
+        return MernisAdapter.super.checkIfRealPerson(jobSeeker);
     }
 
-    default boolean isSignUp(User user, String type) throws Exception {
+    default boolean isSignUp(JobSeeker jobSeeker) throws Exception {
         return true;
     }
-    default boolean checkIfNewEmail(User user) {
+    default boolean isSignUp(Employer employer) throws Exception {
         return true;
     }
-    default boolean checkIfNewTcNo(User user) {
+
+    default boolean checkIfNewEmail( JobSeeker jobSeeker) {
+        return true;
+    }
+    default boolean checkIfNewEmail( Employer employer) {
+        return true;
+    }
+
+    default boolean checkIfNewTcNo(JobSeeker jobSeeker ) {
         return true;
     }
 

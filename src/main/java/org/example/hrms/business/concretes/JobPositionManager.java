@@ -26,7 +26,13 @@ public class JobPositionManager implements JobPositionService {
     }
 
     @Override
-    public DataResult<List<JobPosition>> getALL() {
+    public DataResult<List<JobPosition>> getAll() {
         return new SuccessDataResult<List<JobPosition>>("Data listelendi",this.jobPositionDao.findAll());
+    }
+
+    @Override
+    public DataResult<JobPosition> add(JobPosition jobPosition) {
+        this.jobPositionDao.save(jobPosition);
+        return new SuccessDataResult<>("İş pozisyonu ",jobPosition);
     }
 }

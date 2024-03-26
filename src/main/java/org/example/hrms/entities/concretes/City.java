@@ -15,8 +15,6 @@ public class City {
     private String plate;
     private String name;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<JobAdvertisement> jobAdvertisements;
 
     public String getName() {
         return StringEscapeUtils.unescapeJava(name);

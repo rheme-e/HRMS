@@ -1,5 +1,6 @@
 package org.example.hrms.dataAccess.abstracts;
 
+import org.example.hrms.core.utilities.result.DataResult;
 import org.example.hrms.entities.concretes.JobAdvertisement;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,10 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
     List<JobAdvertisement> findAllByIsActiveTrue();
     List<JobAdvertisement> findAllByIsActiveTrue(Sort sort);
 
-    List<JobAdvertisement> findAllByIsActiveTrueAndEmployer_Id(int employerId);
+    List<JobAdvertisement> findAllByEmployer_Id(int employerId);
+
+    JobAdvertisement findById(int employerId);
+
 
 
 

@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface JobPositionService {
     void checkPositionName(JobPosition jobPosition);
-    DataResult<List<JobPosition>> getALL();
+    DataResult<List<JobPosition>> getAll();
+    DataResult<JobPosition> add(JobPosition jobPosition);
+
 }

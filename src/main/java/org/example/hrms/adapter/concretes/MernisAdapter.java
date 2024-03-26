@@ -15,7 +15,7 @@ public class MernisAdapter implements org.example.hrms.adapter.abstracts.MernisA
     }
 
     @Override
-    public boolean checkIfRealPerson(User user) throws Exception {
-        return davkpsPublicSoap.TCKimlikNoDogrula(Long.parseLong(user.getJobSeeker().getTcNo()), user.getJobSeeker().getName(), user.getJobSeeker().getLastName(), user.getJobSeeker().getBirthDayYear());
+    public boolean checkIfRealPerson(JobSeeker jobSeeker) throws Exception {
+        return davkpsPublicSoap.TCKimlikNoDogrula(Long.parseLong(jobSeeker.getTcNo()), jobSeeker.getName(), jobSeeker.getLastName(), jobSeeker.getBirthDayYear());
     }
 }

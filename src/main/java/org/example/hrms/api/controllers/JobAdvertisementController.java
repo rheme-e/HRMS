@@ -3,18 +3,22 @@ package org.example.hrms.api.controllers;
 import org.example.hrms.business.abstracts.JobAdvertisementDtoService;
 import org.example.hrms.business.abstracts.JobAdvertisementService;
 import org.example.hrms.core.utilities.result.DataResult;
+import org.example.hrms.core.utilities.result.ErrorDataResult;
+import org.example.hrms.core.utilities.result.SuccessDataResult;
 import org.example.hrms.dtos.JobAdvertisementDto;
 import org.example.hrms.entities.concretes.JobAdvertisement;
+import org.example.hrms.entities.concretes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/api/job-advertisements")
 @RestController
+@CrossOrigin
 public class JobAdvertisementController {
     private JobAdvertisementDtoService jobAdvertisementDtoService;
     private JobAdvertisementService jobAdvertisementService;
@@ -29,7 +33,7 @@ public class JobAdvertisementController {
 
     @GetMapping("/getAll")
     DataResult<List<JobAdvertisementDto>> getAll(){
-        List<JobAdvertisement> jobAdvertisements = jobAdvertisementService.findAllByIsActiveTrue();
+        List<JobAdvertisement> jobAdvertisements = jobAdvertisementService.getAll();
         return this.jobAdvertisementDtoService.getAll(jobAdvertisements);
     }
     @GetMapping("/getAllSortByDate")
@@ -38,10 +42,20 @@ public class JobAdvertisementController {
         return this.jobAdvertisementDtoService.getAll(jobAdvertisements);
     }
 
-    @GetMapping("/getAllByCompanyName")
-    DataResult<List<JobAdvertisementDto>> getAllByCompanyName(@PathVariable int employerId){
-        List<JobAdvertisement> jobAdvertisements = jobAdvertisementService.findAllByIsActiveTrueAndEmployer_Id(employerId);
+    @GetMapping("/getAllByEmployerId/{employerId}")
+    DataResult<List<JobAdvertisementDto>> getAllByEmployerId(@PathVariable int employerId){
+        List<JobAdvertisement> jobAdvertisements = jobAdvertisementService.findAllByEmployer_Id(employerId);
         return this.jobAdvertisementDtoService.getAll(jobAdvertisements);
+    }
+    @GetMapping("/getById/{id}")
+    public DataResult<JobAdvertisementDto> getById(@PathVariable int id){
+        return this.jobAdvertisementDtoService.get(jobAdvertisementService.findById(id).getData());
+    }
+
+    @PostMapping("/add")
+    public DataResult<JobAdvertisement> add(@Valid @RequestBody JobAdvertisement jobAdvertisement) {
+        jobAdvertisementService.add(jobAdvertisement);
+        return new SuccessDataResult<>("İş ilanı eklendi",jobAdvertisement);
     }
 
 

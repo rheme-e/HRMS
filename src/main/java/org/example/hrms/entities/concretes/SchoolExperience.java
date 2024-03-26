@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "school_experiences")
 @NoArgsConstructor
@@ -18,8 +19,9 @@ public class SchoolExperience {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "school_name")
-    private String schoolName;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_school_id")
+    private List<SchoolName> schoolName;
 
     @Column(name = "major")
     private String major;
@@ -27,11 +29,11 @@ public class SchoolExperience {
     @Column(name = "start_year", nullable = false)
     private Date startYear;
 
-    @Column(name = "end_year" , nullable = true)
+    @Column(name = "end_year" )
     private Date endYear;
 
     @ManyToOne
-    @JoinColumn(name = "fk_cv_id")
+    @JoinColumn(name = "cv_id")
     private Cv cv;
 
     public boolean isCurrentlyGraduate() {

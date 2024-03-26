@@ -3,6 +3,8 @@ package org.example.hrms.core.concretes;
 import org.example.hrms.business.abstracts.VerificationCodeService;
 import org.example.hrms.config.AppConfig;
 import org.example.hrms.core.abstracts.EmailService;
+import org.example.hrms.entities.concretes.Employer;
+import org.example.hrms.entities.concretes.JobSeeker;
 import org.example.hrms.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import javax.mail.internet.*;
 
 
 @Service
-public class EmailManager implements EmailService<User> {
+public class EmailManager implements EmailService {
 
     private AppConfig appConfig;
     private VerificationCodeService verificationCodeService;
@@ -26,12 +28,21 @@ public class EmailManager implements EmailService<User> {
     }
 
     @Override
-    public void sendVerificationEmail(User user, String verificationLink) {
-        String to = user.getEmail();
+    public void sendVerificationEmail(JobSeeker jobSeeker, String verificationLink) {
+        String to = jobSeeker.getUser().getEmail();
         String subject = "Hesap Doğrulama";
         String body = "Lütfen aşağıdaki bağlantıya tıklayarak hesabınızı doğrulayın:\n" + verificationLink;
         sendEmail(to, subject, body);
-        verificationCodeService.createVerificationCode(user);
+        verificationCodeService.createVerificationCode(jobSeeker);
+
+    }
+    @Override
+    public void sendVerificationEmail(Employer employer, String verificationLink) {
+        String to = employer.getUser().getEmail();
+        String subject = "Hesap Doğrulama";
+        String body = "Lütfen aşağıdaki bağlantıya tıklayarak hesabınızı doğrulayın:\n" + verificationLink;
+        sendEmail(to, subject, body);
+        verificationCodeService.createVerificationCode(employer);
 
     }
 

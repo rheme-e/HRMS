@@ -7,5 +7,6 @@ import org.example.hrms.entities.concretes.User;
 import java.util.List;
 
 public interface ValidateService {
-    boolean validateUserFields(Object user,String type);
+    boolean validateUserFields(JobSeeker jobSeeker);
+    boolean validateUserFields(Employer employer);
 }

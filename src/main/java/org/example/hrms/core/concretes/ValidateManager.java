@@ -14,70 +14,62 @@ public class ValidateManager implements ValidateService {
 
 
     @Override
-    public boolean validateUserFields(Object user, String userType){
+    public boolean validateUserFields(JobSeeker jobSeeker){
         List<String> errors = new ArrayList<>();
 
-        if(user == null){
-            errors.add(getErrorMessage("emptyUser",userType));
+        if(jobSeeker == null){
+            errors.add(getErrorMessage("emptyUser"));
             return handleErrors(errors);
         }
-        validateSpecificFields(user, errors);
+        validateSpecificFields(jobSeeker, errors);
+
+        return handleErrors(errors);
+    }
+    @Override
+    public boolean validateUserFields(Employer employer){
+        List<String> errors = new ArrayList<>();
+
+        if(employer == null){
+            errors.add(getErrorMessage("emptyUser"));
+            return handleErrors(errors);
+        }
+        validateSpecificFields(employer, errors);
 
         return handleErrors(errors);
     }
 
-    private void validateSpecificFields(Object user, List<String> errors) {
-
-        if (user instanceof JobSeeker) {
-            JobSeeker jobSeeker = (JobSeeker) user;
+    private void validateSpecificFields(JobSeeker jobSeeker, List<String> errors) {
             if (jobSeeker.getName().isEmpty() || jobSeeker.getName() == null) {
-                errors.add(getErrorMessage("emptyName", "jobseeker"));
+                errors.add(getErrorMessage("emptyName"));
             }
             if (jobSeeker.getLastName().isEmpty()) {
-                errors.add(getErrorMessage("emptyLastName", "jobseeker"));
+                errors.add(getErrorMessage("emptyLastName"));
             }
             if (jobSeeker.getTcNo().isEmpty()) {
-                errors.add(getErrorMessage("emptyIdNo", "jobseeker"));
+                errors.add(getErrorMessage("emptyIdNo"));
             }
             if (jobSeeker.getBirthDayYear() == 0) {
-                errors.add(getErrorMessage("emptyBirthDayYear", "jobseeker"));
+                errors.add(getErrorMessage("emptyBirthDayYear"));
             }
 
-            //if (jobSeeker.getEmail().isEmpty()) {
-             //   errors.add(getErrorMessage("emptyEmail", "jobseeker"));
-           // }
-            //if (jobSeeker.getPassword().isEmpty()) {
-             //   errors.add(getErrorMessage("emptyPassword", "jobseeker"));
-           // }
-
-
-
-        } else if (user instanceof Employer) {
-            Employer employer = (Employer) user;
-            if (employer.getCompanyName().isEmpty()) {
-                errors.add(getErrorMessage("emptyCompanyName", "employer"));
-            }
-            if (employer.getWebsite().isEmpty()) {
-                errors.add(getErrorMessage("emptyWebsite", "employer"));
-            }
-            if (employer.getPhone().isEmpty()) {
-                errors.add(getErrorMessage("emptyPhone", "employer"));
-            }
-//            if (employer.getEmail().isEmpty()) {
-//                errors.add(getErrorMessage("emptyEmail", "employer"));
-//            }
-//            if (employer.getPassword().isEmpty()) {
-//                errors.add(getErrorMessage("emptyPassword", "employer"));
-//            }
-
+    }
+    private void validateSpecificFields(Employer employer, List<String> errors) {
+        if (employer.getCompanyName().isEmpty()) {
+            errors.add(getErrorMessage("emptyCompanyName"));
         }
-
+        if (employer.getWebsite().isEmpty()) {
+            errors.add(getErrorMessage("emptyWebsite"));
+        }
+        if (employer.getPhone().isEmpty()) {
+            errors.add(getErrorMessage("emptyPhone"));
+        }
 
     }
 
 
-    private String getErrorMessage(String errorCode, String userType){
-        return "Error (" + userType + "): " + errorCode;
+
+    private String getErrorMessage(String errorCode){
+        return "Error :" + errorCode;
     }
 
     private boolean handleErrors(List<String> errors) {

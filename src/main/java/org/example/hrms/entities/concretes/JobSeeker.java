@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Table(name = "job_seekers")
 @Entity
 @Data
@@ -30,8 +32,9 @@ public class JobSeeker {
     @Column(name = "birth_day_year", nullable = false)
     private int birthDayYear;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id")
     private User user;
+
 
 }
