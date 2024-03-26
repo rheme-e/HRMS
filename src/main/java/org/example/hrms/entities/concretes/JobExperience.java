@@ -33,7 +33,7 @@ public class JobExperience {
     private Date endYear;
 
     @ManyToOne
-    @JoinColumn(name = "fk_cv_id")
+    @JoinColumn(name = "fk_cv_id") //git
     private Cv cv;
 
     public boolean isCurrentlyEmployed() {
